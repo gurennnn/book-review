@@ -14,18 +14,15 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="761.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AppView">
-   <children>
+
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="191.0" prefHeight="88.0" prefWidth="570.0" text="Books List (All) : 0" textAlignment="CENTER">
          <font>
             <Font size="50.0" />
          </font>
       </Label>
       <AnchorPane prefHeight="599.0" prefWidth="182.0">
-         <children>
             <ImageView fitHeight="67.0" fitWidth="61.0" layoutX="7.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
                   <Image url="@../../../../../../Pictures/Camera Roll/cypher.jpg" />
-               </image>
             </ImageView>
             <Label layoutX="86.0" layoutY="31.0" prefHeight="17.0" prefWidth="72.0" text="Guren">
                <font>
@@ -64,27 +61,19 @@
                   <Font size="18.0" />
                </font>
             </CheckBox>
-         </children>
       </AnchorPane>
       <ScrollPane layoutX="198.0" layoutY="88.0" prefHeight="501.0" prefWidth="556.0">
-         <content>
             <FlowPane prefHeight="177.0" prefWidth="541.0">
-               <children>
                   <AnchorPane prefHeight="220.0" prefWidth="139.0">
                      <FlowPane.margin>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </FlowPane.margin>
-                     <children>
                         <Button layoutX="33.0" layoutY="72.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="73.0" style="-fx-background-radius: 50%; -fx-border-radius: 50%;" text="+">
                            <font>
                               <Font name="System Bold" size="36.0" />
                            </font>
                         </Button>
-                     </children>
                   </AnchorPane>
-               </children>
             </FlowPane>
-         </content>
       </ScrollPane>
-   </children>
 </AnchorPane>

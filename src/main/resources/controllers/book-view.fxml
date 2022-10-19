@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="488.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
+
       <ImageView fitHeight="179.0" fitWidth="168.0" layoutX="16.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="203.0" layoutY="60.0" prefHeight="27.0" prefWidth="275.0" text="Author :">
          <font>
@@ -43,5 +43,4 @@
       <RadioButton layoutX="409.0" layoutY="210.0" mnemonicParsing="false" text="finished" toggleGroup="$status" />
       <RadioButton layoutX="295.0" layoutY="210.0" mnemonicParsing="false" text="in progress" toggleGroup="$status" />
       <Button layoutX="424.0" layoutY="488.0" mnemonicParsing="false" style="-fx-background-color: green;" text="Submit" textFill="WHITE" />
-   </children>
 </AnchorPane>

@@ -9,8 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="357.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="357.0" xmlns="http://javafx.com/javafx/17">
       <ImageView fitHeight="150.0" fitWidth="134.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
       <TextField layoutX="154.0" layoutY="51.0" prefHeight="25.0" prefWidth="189.0" promptText="Username" />
       <PasswordField layoutX="154.0" layoutY="103.0" prefHeight="25.0" prefWidth="189.0" promptText="Password" />
@@ -26,5 +25,4 @@
       <TextField layoutX="84.0" layoutY="356.0" prefHeight="25.0" prefWidth="189.0" promptText="Country e.g Morocco" />
       <TextField layoutX="84.0" layoutY="399.0" prefHeight="25.0" prefWidth="189.0" promptText="email e.g example@xyz.com" />
       <TextField layoutX="84.0" layoutY="443.0" prefHeight="25.0" prefWidth="189.0" promptText="GSM e.g +212608506963" />
-   </children>
 </AnchorPane>
