@@ -119,13 +119,13 @@ public class Book {
     @Override
     public String toString() {
         return "title: '" + title + '\'' +
-                ".\n author: '" + author + '\'' +
-                ".\n date: " + date +
-                ".\n genre: " + genre +
-                ".\n category: " + category +
-                ".\n status: " + status +
-                ".\n rating: " + rating +
-                ".\n revue: '" + revue + '\'' +
+                ".\nauthor: '" + author + '\'' +
+                ".\ndate: " + date +
+                ".\ngenre: " + genre +
+                ".\ncategory: " + category +
+                ".\nstatus: " + status +
+                ".\nrating: " + rating +
+                ".\nrevue: '" + revue + '\'' +
                 ".";
     }
 }

@@ -25,19 +25,6 @@ public class BookCollection {
         this.myCollection = myCollection;
     }
 
-    // show your book collection
-    public void showCollection() {
-        if (this.myCollection.isEmpty()) {
-            System.out.println("Empty Collection !!!");
-        } else {
-            System.out.println("---------- Displaying your Book collection ----------");
-            int counter = 1;
-            for (Book book : this.myCollection) {
-                System.out.println("### Book " + counter + " ###");
-            }
-        }
-    }
-
     // adding a book to the book collection
     public void addBook(Book book) {
         this.myCollection.add(book);
@@ -48,4 +35,5 @@ public class BookCollection {
         this.myCollection.remove(book);
     }
 
+    // more methods (sorting and filtering) ...
 }

@@ -1,4 +1,7 @@
-module book_review_app {
+module controllers {
     requires javafx.controls;
     requires javafx.fxml;
+
+    opens controllers to javafx.fxml;
+    exports controllers;
 }
