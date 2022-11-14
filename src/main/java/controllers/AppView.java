@@ -35,20 +35,22 @@ public class AppView implements Initializable {
     // displaying the collection
     public void displayCollection() throws IOException {
 
-        // loading the book card view from the appropriate fxml file
-        FXMLLoader bookCardLoader = new FXMLLoader(getClass().getResource("book-card.fxml"));
+        FXMLLoader bookCardLoader;
+        AnchorPane bookCard;
+        BookCard bookCardController;
 
-        // getting the newly created card's controller
-        BookCard bookCardController = new BookCard();
-        //bookCardLoader.setController(bookCardController);
-
-        // populating the empty card with books
-        //bookCardController.setBookCard(BookSample.Candide.getBook());
-
-        // adding the card to our cards container
-        AnchorPane pane = bookCardLoader.load();
-        bookCollectionPane.getChildren().add(pane);
-
+        for (Book book : this.collection.getMyCollection()) {
+            // loading the book card view from the appropriate fxml file
+            bookCardLoader = new FXMLLoader(getClass().getResource("book-card.fxml"));
+            // creating the card element from the fxml loader
+            bookCard = bookCardLoader.load();
+            // adding the card to the collection
+            this.bookCollectionPane.getChildren().add(bookCard);
+            // getting the newly created card's controller
+            bookCardController = (BookCard) bookCardLoader.getController();
+            // populating the empty card with books
+            bookCardController.setBookCard(book);
+        }
     }
 
     @Override
@@ -58,7 +60,7 @@ public class AppView implements Initializable {
         this.collection.addBook(BookSample.ThePerfume.getBook());
         this.collection.addBook(BookSample.TheSupplication.getBook());
         try {
-            this.displayCollection();
+            displayCollection();
         } catch (IOException e) {
             e.printStackTrace();
         }

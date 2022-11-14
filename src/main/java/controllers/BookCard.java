@@ -4,15 +4,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import models.Book;
 
 public class BookCard {
 
     // importing fields from the fxml view
     @FXML
+    private AnchorPane bookCard;
+    @FXML
     private ImageView bookImage;
     @FXML
-    private Label bookTitle, bookAuthor;
+    public Label bookTitle, bookAuthor;
 
     // populating the book card
     public void setBookCard(Book book, Image image) {
