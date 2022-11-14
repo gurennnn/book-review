@@ -3,14 +3,14 @@ package models;
 public class Book {
 
     // available status
-    enum Status {
+    public enum Status {
         TO_READ,
         READING,
         READ;
     }
 
     // available genres
-    enum Genre {
+    public enum Genre {
         NOVEL,
         POETRY,
         THEATRICAL,
@@ -19,7 +19,7 @@ public class Book {
     }
 
     // available categories
-    enum Category {
+    public enum Category {
         ACTION,
         ADVENTURE,
         BUSINESS,
@@ -44,6 +44,7 @@ public class Book {
     private Category category;
 
     // book's user specific info
+    private boolean isFavourite;
     private Status status;
     private int rating;
     private String revue;
@@ -55,6 +56,7 @@ public class Book {
         this.genre = genre;
         this.category = category;
         this.date = date;
+        this.status = Status.TO_READ;
     }
 
     // getters and setters
@@ -91,6 +93,13 @@ public class Book {
     }
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public boolean getIsFavourite() {
+        return isFavourite;
+    }
+    public void setIsFavourite(boolean isFavourite) {
+        this.isFavourite = isFavourite;
     }
 
     public Status getStatus() {
