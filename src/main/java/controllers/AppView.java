@@ -1,17 +1,16 @@
 package controllers;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Popup;
+import javafx.stage.Stage;
 import models.BookCollection;
 import models.Book;
 import models.BookSample;
@@ -23,6 +22,8 @@ import java.util.ResourceBundle;
 public class AppView implements Initializable {
 
     // importing fields from the fxml view files
+    @FXML
+    private AnchorPane scenePane;
     @FXML
     private FlowPane bookCollectionPane;
     @FXML
@@ -160,6 +161,20 @@ public class AppView implements Initializable {
                 // populating the empty card with books
                 bookCardController.setBookCard(book);
             }
+        }
+    }
+
+    // exit method
+    public void exit(Event e) {
+        // popup alert window
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exit");
+        alert.setHeaderText("You are about to exit");
+        // exit confirmation
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            // getting the current stage to exit
+            Stage stage = (Stage) this.scenePane.getScene().getWindow();
+            stage.close();
         }
     }
 
