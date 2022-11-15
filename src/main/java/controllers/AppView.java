@@ -25,9 +25,9 @@ public class AppView implements Initializable {
     @FXML
     private AnchorPane scenePane;
     @FXML
-    private FlowPane bookCollectionPane;
+    private Label viewLabel;
     @FXML
-    private Button displayFavouritesButton;
+    private FlowPane bookCollectionPane;
     @FXML
     private TextField bookSearchBar;
     @FXML
@@ -46,6 +46,8 @@ public class AppView implements Initializable {
         AnchorPane bookCard;
         BookCard bookCardController;
 
+        int booksNumber = 0;
+
         for (Book book : this.collection.getMyCollection()) {
             // loading the book card view from the appropriate fxml file
             bookCardLoader = new FXMLLoader(getClass().getResource("book-card.fxml"));
@@ -57,7 +59,11 @@ public class AppView implements Initializable {
             bookCardController = (BookCard) bookCardLoader.getController();
             // populating the empty card with books
             bookCardController.setBookCard(book);
+            // increment the books counter
+            booksNumber++;
         }
+        // updating the text label
+        this.viewLabel.setText("Books List (All) : " + booksNumber);
     }
 
     // displaying favourite books
@@ -69,6 +75,8 @@ public class AppView implements Initializable {
         FXMLLoader bookCardLoader;
         AnchorPane bookCard;
         BookCard bookCardController;
+
+        int booksNumber = 0;
 
         for (Book book : this.collection.getMyCollection()) {
             if (book.getIsFavourite()) {
@@ -82,8 +90,12 @@ public class AppView implements Initializable {
                 bookCardController = (BookCard) bookCardLoader.getController();
                 // populating the empty card with books
                 bookCardController.setBookCard(book);
+                // increment the books counter
+                booksNumber++;
             }
         }
+        // updating the text label
+        this.viewLabel.setText("Books List (Favourites) : " + booksNumber);
     }
 
     // displaying to read books
@@ -95,6 +107,8 @@ public class AppView implements Initializable {
         FXMLLoader bookCardLoader;
         AnchorPane bookCard;
         BookCard bookCardController;
+
+        int booksNumber = 0;
 
         for (Book book : this.collection.getMyCollection()) {
             if (book.getStatus() == Book.Status.TO_READ) {
@@ -108,8 +122,12 @@ public class AppView implements Initializable {
                 bookCardController = (BookCard) bookCardLoader.getController();
                 // populating the empty card with books
                 bookCardController.setBookCard(book);
+                // increment the books counter
+                booksNumber++;
             }
         }
+        // updating the text label
+        this.viewLabel.setText("Books List (To Read) : " + booksNumber);
     }
 
     // displaying currently reading books
@@ -121,6 +139,8 @@ public class AppView implements Initializable {
         FXMLLoader bookCardLoader;
         AnchorPane bookCard;
         BookCard bookCardController;
+
+        int booksNumber = 0;
 
         for (Book book : this.collection.getMyCollection()) {
             if (book.getStatus() == Book.Status.READING) {
@@ -134,8 +154,12 @@ public class AppView implements Initializable {
                 bookCardController = (BookCard) bookCardLoader.getController();
                 // populating the empty card with books
                 bookCardController.setBookCard(book);
+                // increment the books counter
+                booksNumber++;
             }
         }
+        // updating the text label
+        this.viewLabel.setText("Books List (Reading) : " + booksNumber);
     }
 
     // displaying read books
@@ -147,6 +171,8 @@ public class AppView implements Initializable {
         FXMLLoader bookCardLoader;
         AnchorPane bookCard;
         BookCard bookCardController;
+
+        int booksNumber = 0;
 
         for (Book book : this.collection.getMyCollection()) {
             if (book.getStatus() == Book.Status.READ) {
@@ -160,8 +186,12 @@ public class AppView implements Initializable {
                 bookCardController = (BookCard) bookCardLoader.getController();
                 // populating the empty card with books
                 bookCardController.setBookCard(book);
+                // increment the books counter
+                booksNumber++;
             }
         }
+        // updating the text label
+        this.viewLabel.setText("Books List (Read) : " + booksNumber);
     }
 
     // exit method

@@ -1,0 +1,7 @@
+GET http://openlibrary.org/search.json?title=candid
+###
+
+GET http://openlibrary.org/books/OL9158246M.json
+###
+
+GET  http://openlibrary.org/works/OL27448W.json
