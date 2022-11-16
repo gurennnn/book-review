@@ -8,18 +8,23 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="357.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-      <ImageView fitHeight="150.0" fitWidth="134.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-      <TextField layoutX="154.0" layoutY="77.0" prefHeight="25.0" prefWidth="189.0" promptText="Username" />
-      <TextField layoutX="84.0" layoutY="224.0" prefHeight="25.0" prefWidth="189.0" promptText="First name" />
-      <TextField layoutX="84.0" layoutY="268.0" prefHeight="25.0" prefWidth="189.0" promptText="Last name" />
+      <ImageView fx:id="profilePicture" fitHeight="130.0" fitWidth="130.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+   <Label fx:id="changeProfilePicture" layoutX="14.0" layoutY="144.0" text="change picture">
+      <font>
+         <Font size="10.0" />
+      </font>
+   </Label>
       <Label layoutX="131.0" layoutY="176.0" prefHeight="27.0" prefWidth="95.0" text="Your Profile">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="288.0" layoutY="493.0" mnemonicParsing="false" style="-fx-background-color: green;" text="Update" textFill="WHITE" />
-      <TextField layoutX="84.0" layoutY="312.0" prefHeight="25.0" prefWidth="189.0" promptText="Age e.g 17" />
-      <TextField layoutX="84.0" layoutY="356.0" prefHeight="25.0" prefWidth="189.0" promptText="Country e.g Morocco" />
-      <TextField layoutX="84.0" layoutY="399.0" prefHeight="25.0" prefWidth="189.0" promptText="email e.g example@xyz.com" />
-      <TextField layoutX="84.0" layoutY="443.0" prefHeight="25.0" prefWidth="189.0" promptText="GSM e.g +212608506963" />
+      <TextField fx:id="userNameField" layoutX="154.0" layoutY="67.0" prefHeight="25.0" prefWidth="189.0" promptText="Username" />
+      <TextField fx:id="firstNameField" layoutX="84.0" layoutY="224.0" prefHeight="25.0" prefWidth="189.0" promptText="First name" />
+      <TextField fx:id="lastNameField" layoutX="84.0" layoutY="268.0" prefHeight="25.0" prefWidth="189.0" promptText="Last name" />
+      <TextField fx:id="ageField" layoutX="84.0" layoutY="312.0" prefHeight="25.0" prefWidth="189.0" promptText="Age e.g 17" />
+      <TextField fx:id="countryField" layoutX="84.0" layoutY="356.0" prefHeight="25.0" prefWidth="189.0" promptText="Country e.g Morocco" />
+      <TextField fx:id="emailField" layoutX="84.0" layoutY="399.0" prefHeight="25.0" prefWidth="189.0" promptText="email e.g example@xyz.com" />
+      <TextField fx:id="gsmField" layoutX="84.0" layoutY="443.0" prefHeight="25.0" prefWidth="189.0" promptText="GSM e.g +212608506963" />
+      <Button fx:id="updateProfileButton" layoutX="288.0" layoutY="493.0" mnemonicParsing="false" style="-fx-background-color: green;" text="Update" textFill="WHITE" />
 </AnchorPane>

@@ -9,8 +9,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.stage.Modality;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import models.BookCollection;
 import models.Book;
 import models.BookSample;
@@ -21,7 +23,7 @@ import java.util.ResourceBundle;
 
 public class AppView implements Initializable {
 
-    // importing fields from the fxml view files
+    // importing fields from the fxml file
     @FXML
     private AnchorPane scenePane;
     @FXML
@@ -29,12 +31,27 @@ public class AppView implements Initializable {
     @FXML
     private FlowPane bookCollectionPane;
     @FXML
-    private TextField bookSearchBar;
-    @FXML
-    private Button bookSearchButton;
+    private Label showProfile;
 
     // mocked data book collection
     private BookCollection collection;
+
+    // showing the profile view
+    public void showProfile() throws IOException {
+        // loading the profile view's fxml file
+        FXMLLoader profileLoader = new FXMLLoader(getClass().getResource("profile-view.fxml"));
+        // creating the profile view
+        AnchorPane profileView = profileLoader.load();
+        // creating the stage that will show our profile
+        Stage profileStage = new Stage();
+        // some stage styling
+        profileStage.setResizable(false);
+        profileStage.setTitle("Welcome to your Profile :)");
+        // adding the view to a scene and linking it to the profile view
+        profileStage.setScene(new Scene(profileView));
+        // showing the newly created stage
+        profileStage.show();
+    }
 
     // displaying all the books
     public void displayAll() throws IOException {
