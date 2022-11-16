@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
+import javafx.embed.swing.SwingFXUtils;
 
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -14,11 +15,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import models.Profile;
 
 public class ProfileView implements Initializable {
 
     // importing fields from the fxml file
+    @FXML
+    private AnchorPane scenePane;
     @FXML
     private ImageView profilePicture;
     @FXML
@@ -32,8 +37,8 @@ public class ProfileView implements Initializable {
     // displaying profile information
     public void displayProfile() {
         // displaying information from the deserialized profile object
-        Profile userProfile = getProfile();
-        if (!userProfile.equals(null)) {
+        Profile userProfile = this.getProfileFromTxt();
+        if (userProfile != null) {
             // displaying text fields
             this.userNameField.setText(userProfile.getUserName());
             this.firstNameField.setText(userProfile.getFirstName());
@@ -43,6 +48,7 @@ public class ProfileView implements Initializable {
             this.emailField.setText(userProfile.getEmail());
             this.gsmField.setText(userProfile.getGsm());
             // displaying the image
+            /*
             BufferedImage profileImage = userProfile.getProfilePicture();
             WritableImage wi = null;
             if (profileImage != null) {
@@ -55,11 +61,28 @@ public class ProfileView implements Initializable {
                 }
                 this.profilePicture.setImage(new ImageView(wi).getImage());
             }
+             */
         }
     }
 
+    // updating the profile
+    public void updateProfile() {
+        // creating the updated profile for serialization
+        Profile updatedProfile = this.getProfileFromView();
+        // serialization process
+        try {
+            FileOutputStream output = new FileOutputStream(filePath);
+            ObjectOutputStream profileOutput = new ObjectOutputStream(output);
+            profileOutput.writeObject(updatedProfile);
+        } catch (IOException e) {
+            System.out.println("failed to update");
+        }
+        // Stage stage = (Stage) this.scenePane.getScene().getWindow();
+        // stage.close();
+    }
+
     // getting the user profile from the serialized .txt file (if it exists)
-    static private Profile getProfile() {
+    private Profile getProfileFromTxt() {
         // retrieving the profile from the 'profile.txt' file if it exists (deserialization)
         try {
             FileInputStream input = new FileInputStream(filePath);
@@ -69,6 +92,21 @@ public class ProfileView implements Initializable {
         } catch (IOException | ClassNotFoundException ce) {
             return null; // in this case no profile has ever been saved.
         }
+    }
+
+    private Profile getProfileFromView() {
+        // getting the instance fields from the view
+        String userName = this.userNameField.getText();
+        String firstName = this.firstNameField.getText();
+        String lastName = this.lastNameField.getText();
+        int age = Integer.parseInt(this.ageField.getText());
+        String country = this.countryField.getText();
+        String email = this.emailField.getText();
+        String gsm = this.gsmField.getText();
+        // BufferedImage profileImage = SwingFXUtils.fromFXImage(this.profilePicture.getImage(), null);
+        // creating the updated profile for serialization
+        Profile updatedProfile = new Profile(userName, firstName, lastName, country, email, gsm, age, null);
+        return updatedProfile;
     }
 
     @Override
