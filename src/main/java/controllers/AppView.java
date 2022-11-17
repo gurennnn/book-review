@@ -1,18 +1,14 @@
 package controllers;
 
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import javafx.stage.Modality;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import models.BookCollection;
 import models.Book;
 import models.BookSample;
@@ -30,8 +26,6 @@ public class AppView implements Initializable {
     private Label viewLabel;
     @FXML
     private FlowPane bookCollectionPane;
-    @FXML
-    private Label showProfile;
 
     // mocked data book collection
     private BookCollection collection;
@@ -46,6 +40,8 @@ public class AppView implements Initializable {
         Stage profileStage = new Stage();
         // some stage styling
         profileStage.setResizable(false);
+        Image icon = new Image("C:\\Users\\ASUS\\Pictures\\Camera Roll\\book-review-icon.png");
+        profileStage.getIcons().add(icon);
         profileStage.setTitle("Welcome to your Profile :)");
         // adding the view to a scene and linking it to the profile view
         profileStage.setScene(new Scene(profileView));
@@ -73,14 +69,14 @@ public class AppView implements Initializable {
             // adding the card to the collection
             this.bookCollectionPane.getChildren().add(bookCard);
             // getting the newly created card's controller
-            bookCardController = (BookCard) bookCardLoader.getController();
+            bookCardController = bookCardLoader.getController();
             // populating the empty card with books
             bookCardController.setBookCard(book);
             // increment the books counter
             booksNumber++;
         }
         // updating the text label
-        this.viewLabel.setText("Books List (All) : " + booksNumber);
+        this.viewLabel.setText("Books List - all - " + booksNumber);
     }
 
     // displaying favourite books
@@ -104,7 +100,7 @@ public class AppView implements Initializable {
                 // adding the card to the collection
                 this.bookCollectionPane.getChildren().add(bookCard);
                 // getting the newly created card's controller
-                bookCardController = (BookCard) bookCardLoader.getController();
+                bookCardController = bookCardLoader.getController();
                 // populating the empty card with books
                 bookCardController.setBookCard(book);
                 // increment the books counter
@@ -112,7 +108,7 @@ public class AppView implements Initializable {
             }
         }
         // updating the text label
-        this.viewLabel.setText("Books List (Favourites) : " + booksNumber);
+        this.viewLabel.setText("Books List - favs - " + booksNumber);
     }
 
     // displaying to read books
@@ -136,7 +132,7 @@ public class AppView implements Initializable {
                 // adding the card to the collection
                 this.bookCollectionPane.getChildren().add(bookCard);
                 // getting the newly created card's controller
-                bookCardController = (BookCard) bookCardLoader.getController();
+                bookCardController = bookCardLoader.getController();
                 // populating the empty card with books
                 bookCardController.setBookCard(book);
                 // increment the books counter
@@ -144,7 +140,7 @@ public class AppView implements Initializable {
             }
         }
         // updating the text label
-        this.viewLabel.setText("Books List (To Read) : " + booksNumber);
+        this.viewLabel.setText("Books List - to read - " + booksNumber);
     }
 
     // displaying currently reading books
@@ -168,7 +164,7 @@ public class AppView implements Initializable {
                 // adding the card to the collection
                 this.bookCollectionPane.getChildren().add(bookCard);
                 // getting the newly created card's controller
-                bookCardController = (BookCard) bookCardLoader.getController();
+                bookCardController = bookCardLoader.getController();
                 // populating the empty card with books
                 bookCardController.setBookCard(book);
                 // increment the books counter
@@ -176,7 +172,7 @@ public class AppView implements Initializable {
             }
         }
         // updating the text label
-        this.viewLabel.setText("Books List (Reading) : " + booksNumber);
+        this.viewLabel.setText("Books List - reading - " + booksNumber);
     }
 
     // displaying read books
@@ -200,7 +196,7 @@ public class AppView implements Initializable {
                 // adding the card to the collection
                 this.bookCollectionPane.getChildren().add(bookCard);
                 // getting the newly created card's controller
-                bookCardController = (BookCard) bookCardLoader.getController();
+                bookCardController = bookCardLoader.getController();
                 // populating the empty card with books
                 bookCardController.setBookCard(book);
                 // increment the books counter
@@ -208,11 +204,11 @@ public class AppView implements Initializable {
             }
         }
         // updating the text label
-        this.viewLabel.setText("Books List (Read) : " + booksNumber);
+        this.viewLabel.setText("Books List - read - " + booksNumber);
     }
 
     // exit method
-    public void exit(Event e) {
+    public void exit() {
         // popup alert window
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Exit");

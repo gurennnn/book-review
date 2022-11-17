@@ -5,25 +5,29 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import models.Profile;
+
+import javax.imageio.ImageIO;
 
 public class ProfileView implements Initializable {
 
     // importing fields from the fxml file
     @FXML
-    private AnchorPane scenePane;
+    private AnchorPane profilePane;
     @FXML
     private ImageView profilePicture;
     @FXML
@@ -33,6 +37,8 @@ public class ProfileView implements Initializable {
 
     // path to the savings directory
     private static String filePath = "C:\\Users\\ASUS\\IdeaProjects\\book-review\\src\\main\\resources\\savings\\profile.txt";
+    // path to the default image directory
+    private static File imageDirectory = new File("C:\\Users\\ASUS\\Pictures\\Camera Roll");
 
     // displaying profile information
     public void displayProfile() {
@@ -48,7 +54,6 @@ public class ProfileView implements Initializable {
             this.emailField.setText(userProfile.getEmail());
             this.gsmField.setText(userProfile.getGsm());
             // displaying the image
-            /*
             BufferedImage profileImage = userProfile.getProfilePicture();
             WritableImage wi = null;
             if (profileImage != null) {
@@ -61,7 +66,6 @@ public class ProfileView implements Initializable {
                 }
                 this.profilePicture.setImage(new ImageView(wi).getImage());
             }
-             */
         }
     }
 
@@ -77,8 +81,28 @@ public class ProfileView implements Initializable {
         } catch (IOException e) {
             System.out.println("failed to update");
         }
-        // Stage stage = (Stage) this.scenePane.getScene().getWindow();
-        // stage.close();
+    }
+
+    // changing the profile picture
+    public void changePFP() {
+        // profile stage
+        Stage stage = (Stage)this.profilePane.getScene().getWindow();
+        // invoking a fileChooser
+        FileChooser fileChooser = new FileChooser();
+        // fileChooser styling
+        fileChooser.setTitle("Select an Image");
+        fileChooser.setInitialDirectory(imageDirectory);
+        // showing the file dialog
+        File picFile = fileChooser.showOpenDialog(stage);
+        // getting the chosen file
+        if (picFile != null) {
+            try {
+                Image profileImage = new Image(new FileInputStream(picFile.getPath()));
+                this.profilePicture.setImage(profileImage);
+            } catch (FileNotFoundException e) {
+                System.out.println("nooooooood tg33d");
+            }
+        }
     }
 
     // getting the user profile from the serialized .txt file (if it exists)
@@ -94,6 +118,7 @@ public class ProfileView implements Initializable {
         }
     }
 
+    // getting the user's profile from the profile view that has been modified
     private Profile getProfileFromView() {
         // getting the instance fields from the view
         String userName = this.userNameField.getText();
@@ -103,9 +128,12 @@ public class ProfileView implements Initializable {
         String country = this.countryField.getText();
         String email = this.emailField.getText();
         String gsm = this.gsmField.getText();
-        // BufferedImage profileImage = SwingFXUtils.fromFXImage(this.profilePicture.getImage(), null);
+        BufferedImage profileImage = null;
+        if (this.profilePicture.getImage() != null) {
+            profileImage = SwingFXUtils.fromFXImage(this.profilePicture.getImage(), null);
+        }
         // creating the updated profile for serialization
-        Profile updatedProfile = new Profile(userName, firstName, lastName, country, email, gsm, age, null);
+        Profile updatedProfile = new Profile(userName, firstName, lastName, country, email, gsm, age, profileImage);
         return updatedProfile;
     }
 

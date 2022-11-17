@@ -10,7 +10,7 @@
 
 <AnchorPane fx:id="profilePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="357.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfileView">
       <ImageView fx:id="profilePicture" fitHeight="130.0" fitWidth="130.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-   <Label fx:id="changeProfilePicture" layoutX="14.0" layoutY="144.0" text="change picture">
+   <Label fx:id="changeProfilePicture" layoutX="14.0" layoutY="144.0" onMouseClicked="#changePFP" text="change picture">
       <font>
          <Font size="10.0" />
       </font>
@@ -30,5 +30,8 @@
       <TextField fx:id="countryField" layoutX="84.0" layoutY="356.0" prefHeight="25.0" prefWidth="189.0" promptText="Country e.g Morocco" />
       <TextField fx:id="emailField" layoutX="84.0" layoutY="399.0" prefHeight="25.0" prefWidth="189.0" promptText="email e.g example@xyz.com" />
       <TextField fx:id="gsmField" layoutX="84.0" layoutY="443.0" prefHeight="25.0" prefWidth="189.0" promptText="GSM e.g +212608506963" />
-      <Button fx:id="updateProfileButton" layoutX="288.0" layoutY="493.0" mnemonicParsing="false" onAction="#updateProfile" style="-fx-background-color: green;" text="Update" textFill="WHITE" />
+      <Button fx:id="updateProfileButton" layoutX="288.0" layoutY="493.0" mnemonicParsing="false" onAction="#updateProfile" style="-fx-background-color: green;" text="Update" textFill="WHITE">
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor></Button>
 </AnchorPane>

@@ -15,7 +15,7 @@
 
 <AnchorPane fx:id="scenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="761.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AppView">
 
-      <Label fx:id="viewLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="191.0" prefHeight="88.0" prefWidth="570.0" text="Books List (All) : 0" textAlignment="CENTER">
+      <Label fx:id="viewLabel" contentDisplay="CENTER" layoutX="198.0" prefHeight="88.0" prefWidth="556.0" text="Books List (All) : 0" textAlignment="CENTER">
          <font>
             <Font size="50.0" />
          </font>
