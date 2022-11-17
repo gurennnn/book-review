@@ -2,26 +2,18 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
-import javafx.scene.image.PixelWriter;
-import javafx.scene.image.WritableImage;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import models.Profile;
-
-import javax.imageio.ImageIO;
 
 public class ProfileView implements Initializable {
 
@@ -31,14 +23,14 @@ public class ProfileView implements Initializable {
     @FXML
     private ImageView profilePicture;
     @FXML
-    private Label changeProfilePicture;
-    @FXML
     private TextField userNameField, firstNameField, lastNameField, ageField, countryField, emailField, gsmField;
 
-    // path to the savings directory
-    private static String filePath = "C:\\Users\\ASUS\\IdeaProjects\\book-review\\src\\main\\resources\\savings\\profile.txt";
+    // path to the profile savings directory
+    private static final String profileFilePath = "C:\\Users\\ASUS\\IdeaProjects\\book-review\\src\\main\\resources\\savings\\profile.txt";
+    // path to the image saving directory
+    private static final String imageFilePath = "C:\\Users\\ASUS\\IdeaProjects\\book-review\\src\\main\\resources\\savings\\image.txt";
     // path to the default image directory
-    private static File imageDirectory = new File("C:\\Users\\ASUS\\Pictures\\Camera Roll");
+    private static final File imageDirectory = new File("C:\\Users\\ASUS\\Pictures\\Camera Roll");
 
     // displaying profile information
     public void displayProfile() {
@@ -49,23 +41,31 @@ public class ProfileView implements Initializable {
             this.userNameField.setText(userProfile.getUserName());
             this.firstNameField.setText(userProfile.getFirstName());
             this.lastNameField.setText(userProfile.getLastName());
-            this.ageField.setText(String.valueOf(userProfile.getAge()));
+            this.ageField.setText(userProfile.getAge() == 0 ? "" : String.valueOf(userProfile.getAge()));
             this.countryField.setText(userProfile.getCountry());
             this.emailField.setText(userProfile.getEmail());
             this.gsmField.setText(userProfile.getGsm());
             // displaying the image
-            BufferedImage profileImage = userProfile.getProfilePicture();
-            WritableImage wi = null;
-            if (profileImage != null) {
-                wi = new WritableImage(profileImage.getWidth(), profileImage.getHeight());
-                PixelWriter pw = wi.getPixelWriter();
-                for (int x = 0; x < profileImage.getWidth(); x++) {
-                    for (int y = 0; y < profileImage.getHeight(); y++) {
-                        pw.setArgb(x, y, profileImage.getRGB(x, y));
-                    }
+            String imagePath = userProfile.getImagePath();
+            if (imagePath != null) {
+                try {
+                    this.profilePicture.setImage(new Image(new FileInputStream(imagePath)));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
                 }
-                this.profilePicture.setImage(new ImageView(wi).getImage());
             }
+        }
+    }
+
+    // getting the user profile from the serialized .txt file (if it exists)
+    private Profile getProfileFromTxt() {
+        // retrieving the profile from the 'profile.txt' file if it exists (deserialization)
+        try {
+            FileInputStream input = new FileInputStream(profileFilePath);
+            ObjectInputStream profileInput = new ObjectInputStream(input);
+            return (Profile) profileInput.readObject();
+        } catch (IOException | ClassNotFoundException ce) {
+            return null; // in this case no profile has ever been saved.
         }
     }
 
@@ -75,12 +75,31 @@ public class ProfileView implements Initializable {
         Profile updatedProfile = this.getProfileFromView();
         // serialization process
         try {
-            FileOutputStream output = new FileOutputStream(filePath);
+            FileOutputStream output = new FileOutputStream(profileFilePath);
             ObjectOutputStream profileOutput = new ObjectOutputStream(output);
             profileOutput.writeObject(updatedProfile);
         } catch (IOException e) {
-            System.out.println("failed to update");
+            e.printStackTrace();
         }
+    }
+
+    // getting the user's profile from the profile view that has been modified
+    private Profile getProfileFromView() {
+        // getting the instance fields from the view
+        String userName = this.userNameField.getText();
+        String firstName = this.firstNameField.getText();
+        String lastName = this.lastNameField.getText();
+        int age = Integer.parseInt(this.ageField.getText().equals("") ? "0" : this.ageField.getText());
+        String country = this.countryField.getText();
+        String email = this.emailField.getText();
+        String gsm = this.gsmField.getText();
+        String imagePath = null;
+        Image image = this.profilePicture.getImage();
+        if (image != null) {
+            imagePath = getImagePath();
+        }
+        // creating the updated profile for serialization
+        return new Profile(userName, firstName, lastName, country, email, gsm, age, imagePath);
     }
 
     // changing the profile picture
@@ -97,44 +116,35 @@ public class ProfileView implements Initializable {
         // getting the chosen file
         if (picFile != null) {
             try {
-                Image profileImage = new Image(new FileInputStream(picFile.getPath()));
-                this.profilePicture.setImage(profileImage);
+                String path = picFile.getPath();
+                this.profilePicture.setImage(new Image(new FileInputStream(path)));
+                saveImagePath(path);
             } catch (FileNotFoundException e) {
-                System.out.println("nooooooood tg33d");
+                System.out.println(e.getStackTrace());
             }
         }
     }
 
-    // getting the user profile from the serialized .txt file (if it exists)
-    private Profile getProfileFromTxt() {
-        // retrieving the profile from the 'profile.txt' file if it exists (deserialization)
+    // saving the temporary image path
+    private static void saveImagePath(String imagePath) {
         try {
-            FileInputStream input = new FileInputStream(filePath);
-            ObjectInputStream profileInput = new ObjectInputStream(input);
-            Profile userProfile = (Profile) profileInput.readObject();
-            return userProfile;
-        } catch (IOException | ClassNotFoundException ce) {
-            return null; // in this case no profile has ever been saved.
+            FileOutputStream output = new FileOutputStream(imageFilePath);
+            ObjectOutputStream profileOutput = new ObjectOutputStream(output);
+            profileOutput.writeObject(imagePath);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    // getting the user's profile from the profile view that has been modified
-    private Profile getProfileFromView() {
-        // getting the instance fields from the view
-        String userName = this.userNameField.getText();
-        String firstName = this.firstNameField.getText();
-        String lastName = this.lastNameField.getText();
-        int age = Integer.parseInt(this.ageField.getText());
-        String country = this.countryField.getText();
-        String email = this.emailField.getText();
-        String gsm = this.gsmField.getText();
-        BufferedImage profileImage = null;
-        if (this.profilePicture.getImage() != null) {
-            profileImage = SwingFXUtils.fromFXImage(this.profilePicture.getImage(), null);
+    // getting the temporary image path
+    private static String getImagePath() {
+        try {
+            FileInputStream input = new FileInputStream(imageFilePath);
+            ObjectInputStream imageInput = new ObjectInputStream(input);
+            return (String) imageInput.readObject();
+        } catch (IOException | ClassNotFoundException ce) {
+            return null; // in this case no profile has ever been saved.
         }
-        // creating the updated profile for serialization
-        Profile updatedProfile = new Profile(userName, firstName, lastName, country, email, gsm, age, profileImage);
-        return updatedProfile;
     }
 
     @Override

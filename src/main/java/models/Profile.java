@@ -1,6 +1,5 @@
 package models;
 
-import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
 public class Profile implements Serializable {
@@ -9,12 +8,11 @@ public class Profile implements Serializable {
     public static final long serialVersionUID = 1L;
 
     // instance fields
-    private String userName, firstName, lastName, country, email, gsm;;
+    private String userName, firstName, lastName, country, email, gsm, imagePath;
     private int age;
-    private BufferedImage profilePicture;
 
     // constructor
-    public Profile(String userName, String firstName, String lastName, String country, String email, String gsm, int age, BufferedImage profilePicture) {
+    public Profile(String userName, String firstName, String lastName, String country, String email, String gsm, int age, String imagePath) {
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -22,7 +20,7 @@ public class Profile implements Serializable {
         this.email = email;
         this.gsm = gsm;
         this.age = age;
-        this.profilePicture = profilePicture;
+        this.imagePath = imagePath;
     }
 
     // setters and getters
@@ -82,11 +80,11 @@ public class Profile implements Serializable {
         this.age = age;
     }
 
-    public BufferedImage getProfilePicture() {
-        return profilePicture;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setProfilePicture(BufferedImage profilePicture) {
-        this.profilePicture = profilePicture;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }
