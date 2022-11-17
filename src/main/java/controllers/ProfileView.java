@@ -118,6 +118,9 @@ public class ProfileView implements Initializable {
             try {
                 String path = picFile.getPath();
                 this.profilePicture.setImage(new Image(new FileInputStream(path)));
+                this.profilePicture.setFitWidth(130);
+                this.profilePicture.setFitHeight(130);
+
                 saveImagePath(path);
             } catch (FileNotFoundException e) {
                 System.out.println(e.getStackTrace());

@@ -223,16 +223,6 @@ public class AppView implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.collection = new BookCollection();
-        this.collection.addBook(BookSample.Candide.getBook());
-        this.collection.addBook(BookSample.ThePerfume.getBook());
-        this.collection.addBook(BookSample.TheSupplication.getBook());
-        this.collection.addBook(BookSample.TheAlchemist.getBook());
-        this.collection.getMyCollection().get(0).setIsFavourite(true);
-        this.collection.getMyCollection().get(2).setIsFavourite(true);
-        this.collection.getMyCollection().get(0).setStatus(Book.Status.READ);
-        this.collection.getMyCollection().get(2).setStatus(Book.Status.READ);
-        this.collection.getMyCollection().get(3).setStatus(Book.Status.READING);
         try {
             displayAll();
         } catch (IOException e) {
