@@ -25,10 +25,10 @@
       </padding>
       </Label>
       <AnchorPane prefHeight="599.0" prefWidth="182.0">
-            <Label layoutX="86.0" layoutY="31.0" prefHeight="17.0" prefWidth="72.0" text="Guren">
-               <font>
-                  <Font size="18.0" />
-               </font></Label>
+            <Label fx:id="userName" layoutX="86.0" layoutY="31.0" prefHeight="17.0" prefWidth="72.0">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
             <Label fx:id="showProfile" layoutX="156.0" layoutY="68.0" onMouseClicked="#showProfile" text="profile">
                <font>
                   <Font size="10.0" />
@@ -46,7 +46,7 @@
                   </ImageView>
          </graphic>
       </Button>
-      <ListView layoutX="5.0" layoutY="122.0" prefHeight="187.0" prefWidth="181.0" />
+      <ListView fx:id="searchResults" layoutX="5.0" layoutY="122.0" prefHeight="187.0" prefWidth="181.0" />
       <Separator layoutY="317.0" prefHeight="3.0" prefWidth="191.0" />
       <Button fx:id="displayAllButton" alignment="CENTER" layoutX="60.0" layoutY="326.0" mnemonicParsing="false" onAction="#displayAll" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: blue;" text="All" textFill="WHITE" />
       <Button fx:id="displayFavouritesButton" layoutX="60.0" layoutY="376.0" mnemonicParsing="false" onAction="#displayFavourites" style="-fx-background-color: blue;" text="Favourites" textFill="WHITE" />
@@ -61,7 +61,11 @@
                   <Image url="@../icons/exit.png" />
                </image>
             </ImageView>
-         </graphic></Button>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <ImageView fx:id="profilePicture" fitHeight="65.0" fitWidth="65.0" layoutX="13.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
       </AnchorPane>
       <ScrollPane layoutX="192.0" layoutY="88.0" prefHeight="501.0" prefWidth="569.0">
             <FlowPane fx:id="bookCollectionPane" hgap="47.0" prefHeight="177.0" prefWidth="541.0" vgap="30.0">

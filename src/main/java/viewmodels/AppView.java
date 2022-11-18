@@ -6,15 +6,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import models.BookCollection;
-import models.Book;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import models.Book;
+import models.Profile;
 
 public class AppView implements Initializable {
 
@@ -22,12 +27,49 @@ public class AppView implements Initializable {
     @FXML
     private AnchorPane scenePane;
     @FXML
+    private FlowPane bookCollectionPane;
+    @FXML
+    private ImageView profilePicture;
+    @FXML
     private Label viewLabel;
     @FXML
-    private FlowPane bookCollectionPane;
+    private Label userName;
+    @FXML
+    private ListView<Label> searchResults;
 
     // mocked data book collection
     private BookCollection collection;
+
+    // displaying username and profile picture in the home page
+    public void displayProfileInfo() {
+        String[] infos = getProfileDisplayInfo();
+        String userName = infos[0];
+        String imagePath = infos[1];
+        if (!userName.equals("")) {
+            this.userName.setText(userName);
+        }
+        if (!imagePath.equals("")) {
+            Image profileImage = new Image(imagePath);
+            this.profilePicture.setImage(profileImage);
+            this.profilePicture.setFitWidth(65);
+            this.profilePicture.setFitHeight(65);
+        }
+    }
+
+    // getting username and profile picture from the profile.txt file
+    private String[] getProfileDisplayInfo() {
+        String[] profileInfo = new String[2];
+        try {
+            FileInputStream input = new FileInputStream(ProfileView.profileFilePath);
+            ObjectInputStream profileInput = new ObjectInputStream(input);
+            Profile userProfile = (Profile) profileInput.readObject();
+            profileInfo[0] = userProfile.getUserName();
+            profileInfo[1] = userProfile.getImagePath();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return profileInfo;
+    }
 
     // showing the profile view
     public void showProfile() throws IOException {
@@ -223,6 +265,7 @@ public class AppView implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.collection = new BookCollection();
+        displayProfileInfo();
         try {
             displayAll();
         } catch (IOException e) {

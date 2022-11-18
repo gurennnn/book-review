@@ -26,7 +26,7 @@ public class ProfileView implements Initializable {
     private TextField userNameField, firstNameField, lastNameField, ageField, countryField, emailField, gsmField;
 
     // path to the profile savings directory
-    private static final String profileFilePath = "C:\\Users\\ASUS\\IdeaProjects\\book-review\\src\\main\\resources\\savings\\profile.txt";
+    public static final String profileFilePath = "C:\\Users\\ASUS\\IdeaProjects\\book-review\\src\\main\\resources\\savings\\profile.txt";
     // path to the image saving directory
     private static final String imageFilePath = "C:\\Users\\ASUS\\IdeaProjects\\book-review\\src\\main\\resources\\savings\\image.txt";
     // path to the default image directory
@@ -81,6 +81,7 @@ public class ProfileView implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     // getting the user's profile from the profile view that has been modified
