@@ -1,7 +1,3 @@
-GET http://openlibrary.org/search.json?title=candid
+GET http://openlibrary.org/search.json?title=un+temps+fou&fields=cover_i,edition_count,title,author_name,first_publish_year&sort=editions
 ###
-
-GET http://openlibrary.org/books/OL9158246M.json
-###
-
-GET  http://openlibrary.org/works/OL27448W.json
+GET https://covers.openlibrary.org/b/id/240727-L.jpg

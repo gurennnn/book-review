@@ -1,10 +1,10 @@
 module controllers {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.swing;
     requires java.sql;
     requires java.desktop;
-    requires javafx.swing;
 
-    opens controllers to javafx.fxml;
-    exports controllers;
+    opens viewmodels to javafx.fxml;
+    exports viewmodels;
 }
