@@ -1,25 +1,29 @@
 package services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 public class BookSearch  {
 
     // converting the json String to a java object
-    public static Map<String, Object> toJavaObject (String jsonResponse) {
-
+    public static JsonResponseFormat transformToJsonFormat(String jsonString) throws JsonProcessingException {
+        if (jsonString.equals("No Result Found")) {
+            return null;
+        }
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(jsonString, JsonResponseFormat.class);
     }
 
     // getting the json response as a String
-    private static String getJsonResponse(String bookTitle) throws IOException {
+    public static String getJsonResponse(String bookTitle) throws IOException {
         // building the url
         String stringURL = urlBuilder(bookTitle);
         if (stringURL.equals("")) {
@@ -65,9 +69,5 @@ public class BookSearch  {
         }
         url += titleParts[length-1] + "&fields=cover_i,edition_count,title,author_name,first_publish_year&sort=editions";
         return url;
-    }
-
-    public static void main(String[] args) throws IOException {
-        System.out.println(getJsonResponse("candide"));
     }
 }

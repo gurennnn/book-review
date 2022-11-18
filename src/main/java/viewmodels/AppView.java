@@ -16,10 +16,17 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import models.Book;
 import models.Profile;
+
+import org.w3c.dom.Text;
+import services.BookSearch;
+import services.JsonBookFormat;
+import services.JsonResponseFormat;
 
 public class AppView implements Initializable {
 
@@ -35,7 +42,52 @@ public class AppView implements Initializable {
     @FXML
     private Label userName;
     @FXML
+    private TextField bookSearchBar;
+    @FXML
     private ListView<Label> searchResults;
+
+    // displaying results in the list view
+    public void displayResults() {
+        // clearing the ListView
+        searchResults.getItems().clear();
+        // getting the results
+        List<JsonBookFormat> results = getBooksListAsJson(this.bookSearchBar.getText());
+        if (results == null) {
+            Label label = new Label("No results found");
+            searchResults.getItems().add(label);
+        } else {
+            String bookTitle, bookAuthor;
+            int bookPublishDate;
+            // for each book, creating a label where the title, author and publish date are shown and adding the label to the list View
+            for (JsonBookFormat result : results) {
+                bookTitle = result.title;
+                bookAuthor = result.author_name.get(0);
+                bookPublishDate = result.first_publish_date;
+                Label label = new Label(bookTitle + "\n" + bookAuthor + "\n" + bookPublishDate);
+                this.searchResults.getItems().add(label);
+            }
+        }
+    }
+
+    // getting the list of books in the json format with the giver title (max size is 5)
+    private List<JsonBookFormat> getBooksListAsJson(String bookTitle) {
+        //
+        try {
+            List<JsonBookFormat> booksList = new ArrayList<>();
+            String jsonStringResponse = BookSearch.getJsonResponse(bookTitle);
+            JsonResponseFormat jsonBookFormat = BookSearch.transformToJsonFormat(jsonStringResponse);
+            if (jsonBookFormat == null) return null;
+            int counter = 0;
+            for (JsonBookFormat jsonBook : jsonBookFormat.docs) {
+                if (counter > 5) break;
+                booksList.add(jsonBook);
+                counter++;
+            }
+            return booksList;
+        } catch (IOException e) {
+            return null;
+        }
+    }
 
     // mocked data book collection
     private BookCollection collection;
