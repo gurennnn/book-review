@@ -1,4 +1,4 @@
-module controllers {
+module book_app {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.swing;
