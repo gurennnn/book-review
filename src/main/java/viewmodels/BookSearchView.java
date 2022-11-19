@@ -3,6 +3,7 @@ package viewmodels;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import models.BookSearch;
+import services.DBInteraction;
 
 public class BookSearchView {
 
@@ -17,6 +18,12 @@ public class BookSearchView {
         this.bookSearchDate.setText(String.valueOf(bookSearch.getDate()));
     }
 
-    // add selected to the book collection
+    // add selected book to the book collection
+    public void addBook() {
+        String title = this.bookSearchTitle.getText();
+        String author = this.bookSearchAuthor.getText();
+        int date = Integer.valueOf(this.bookSearchDate.getText());
+        DBInteraction.addBook(title, author, date);
+    }
 
 }
