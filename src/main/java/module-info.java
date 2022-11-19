@@ -9,4 +9,5 @@ module book_app {
 
     opens viewmodels to javafx.fxml;
     exports viewmodels;
+    exports services;
 }

@@ -9,39 +9,9 @@ public class Book {
         READ;
     }
 
-    // available genres
-    public enum Genre {
-        NOVEL,
-        POETRY,
-        THEATRICAL,
-        ESSAY,
-        BIOGRAPHY;
-    }
-
-    // available categories
-    public enum Category {
-        ACTION,
-        ADVENTURE,
-        BUSINESS,
-        COMEDY,
-        ECONOMY,
-        HEALTH,
-        HISTORY,
-        HORROR,
-        MYSTERY,
-        PHILOSOPHY,
-        POLITICS,
-        RELIGION,
-        ROMANCE,
-        SCIENCE,
-        SPORT;
-    }
-
     // book's general info
     private String title, author;
     private int date;
-    private Genre genre;
-    private Category category;
 
     // book's user specific info
     private boolean isFavourite;
@@ -50,13 +20,14 @@ public class Book {
     private String revue;
 
     // constructor
-    public Book(String title, String author, int date, Genre genre, Category category) {
+    public Book(String title, String author, int date) {
         this.title = title;
         this.author = author;
-        this.genre = genre;
-        this.category = category;
         this.date = date;
+        this.isFavourite = false;
         this.status = Status.TO_READ;
+        this.rating = 0;
+        this.revue = "";
     }
 
     // getters and setters
@@ -79,20 +50,6 @@ public class Book {
     }
     public void setDate(int date) {
         this.date = date;
-    }
-
-    public Genre getGenre() {
-        return this.genre;
-    }
-    public void setGenre(Genre genre) {
-        this.genre = genre;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     public boolean getIsFavourite() {
@@ -130,8 +87,6 @@ public class Book {
         return "title: '" + title + '\'' +
                 ".\nauthor: '" + author + '\'' +
                 ".\ndate: " + date +
-                ".\ngenre: " + genre +
-                ".\ncategory: " + category +
                 ".\nstatus: " + status +
                 ".\nrating: " + rating +
                 ".\nrevue: '" + revue + '\'' +

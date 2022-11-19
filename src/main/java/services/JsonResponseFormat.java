@@ -12,7 +12,7 @@ public class JsonResponseFormat {
     public int start;
 
     @JsonProperty("numFoundExact")
-    public boolean exact;
+    public boolean numFoundExact;
 
     @JsonProperty("docs")
     public List<JsonBookFormat> docs;
@@ -25,4 +25,17 @@ public class JsonResponseFormat {
 
     @JsonProperty("offset")
     public Object offset;
+
+    @Override
+    public String toString() {
+        return "{\n" +
+                "numFound: " + numFound + ",\n" +
+                "start: " + start + ",\n" +
+                "numFoundExact" + numFoundExact + ",\n" +
+                "doc: " + docs.toString() +",\n" +
+                "num_found: " + num_found + ",\n" +
+                "q: " + q + ",\n" +
+                "offset: " + offset + "\n" +
+                "}";
+    }
 }

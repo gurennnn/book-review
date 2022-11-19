@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import models.BookCollection;
 
@@ -16,17 +17,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import models.Book;
+import models.BookSearch;
 import models.Profile;
-
-import org.w3c.dom.Text;
-import services.BookSearch;
-import services.JsonBookFormat;
-import services.JsonResponseFormat;
+import services.Searching;
 
 public class AppView implements Initializable {
 
@@ -34,7 +31,7 @@ public class AppView implements Initializable {
     @FXML
     private AnchorPane scenePane;
     @FXML
-    private FlowPane bookCollectionPane;
+    private FlowPane bookCollectionPane, bookResultsPane;
     @FXML
     private ImageView profilePicture;
     @FXML
@@ -43,54 +40,38 @@ public class AppView implements Initializable {
     private Label userName;
     @FXML
     private TextField bookSearchBar;
-    @FXML
-    private ListView<Label> searchResults;
-
-    // displaying results in the list view
-    public void displayResults() {
-        // clearing the ListView
-        searchResults.getItems().clear();
-        // getting the results
-        List<JsonBookFormat> results = getBooksListAsJson(this.bookSearchBar.getText());
-        if (results == null) {
-            Label label = new Label("No results found");
-            searchResults.getItems().add(label);
-        } else {
-            String bookTitle, bookAuthor;
-            int bookPublishDate;
-            // for each book, creating a label where the title, author and publish date are shown and adding the label to the list View
-            for (JsonBookFormat result : results) {
-                bookTitle = result.title;
-                bookAuthor = result.author_name.get(0);
-                bookPublishDate = result.first_publish_date;
-                Label label = new Label(bookTitle + "\n" + bookAuthor + "\n" + bookPublishDate);
-                this.searchResults.getItems().add(label);
-            }
-        }
-    }
-
-    // getting the list of books in the json format with the giver title (max size is 5)
-    private List<JsonBookFormat> getBooksListAsJson(String bookTitle) {
-        //
-        try {
-            List<JsonBookFormat> booksList = new ArrayList<>();
-            String jsonStringResponse = BookSearch.getJsonResponse(bookTitle);
-            JsonResponseFormat jsonBookFormat = BookSearch.transformToJsonFormat(jsonStringResponse);
-            if (jsonBookFormat == null) return null;
-            int counter = 0;
-            for (JsonBookFormat jsonBook : jsonBookFormat.docs) {
-                if (counter > 5) break;
-                booksList.add(jsonBook);
-                counter++;
-            }
-            return booksList;
-        } catch (IOException e) {
-            return null;
-        }
-    }
 
     // mocked data book collection
     private BookCollection collection;
+
+    // displaying the search results in the list view element
+    public void displayResults() throws IOException {
+        // clearing the pane before showing any content
+        this.bookResultsPane.getChildren().clear();
+        // getting the results in a list
+        List<BookSearch> bookResults = Searching.getBookSearchList(this.bookSearchBar.getText());
+        // if no results found
+        if (bookResults == null) {
+            System.out.println("No Results Found");
+        } else {
+            // for each book, creating a pane and populating it with appropriate information
+            FXMLLoader bookSearchLoader;
+            Pane bookSearchPane;
+            BookSearchView bookSearchController;
+            for (BookSearch bookSearch : bookResults) {
+                // loading the book search view from the appropriate fxml file
+                bookSearchLoader = new FXMLLoader(getClass().getResource("book-search-view.fxml"));
+                // creating the view element from the fxml loader
+                bookSearchPane = bookSearchLoader.load();
+                // adding the view to the results pane
+                this.bookResultsPane.getChildren().add(bookSearchPane);
+                // getting the newly created card's controller
+                bookSearchController = bookSearchLoader.getController();
+                // populating the empty card with books
+                bookSearchController.setBookSearch(bookSearch);
+            }
+        }
+    }
 
     // displaying username and profile picture in the home page
     public void displayProfileInfo() {

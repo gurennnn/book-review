@@ -35,7 +35,6 @@ public class BookCollection {
         this.myCollection.remove(book);
     }
 
-    //
-
     // more methods (sorting and filtering) ...
+
 }
