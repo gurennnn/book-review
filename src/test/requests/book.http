@@ -1,3 +1,0 @@
-GET http://openlibrary.org/search.json?title=un+temps+fou&fields=cover_i,edition_count,title,author_name,first_publish_year&sort=editions
-###
-GET https://covers.openlibrary.org/b/id/240727-L.jpg

@@ -23,8 +23,8 @@ public class BookSearchView {
     public void addBook() {
         String title = this.bookSearchTitle.getText();
         String author = this.bookSearchAuthor.getText();
-        int date = Integer.valueOf(this.bookSearchDate.getText());
-        int coverID = Integer.valueOf(this.bookSearchCoverID.getText());
+        int date = Integer.parseInt(this.bookSearchDate.getText());
+        int coverID = Integer.parseInt(this.bookSearchCoverID.getText());
         DBInteraction.addBook(title, author, date, coverID);
         AppView.collection = DBInteraction.getBookCollection();
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -10,14 +11,15 @@
       <ImageView fx:id="bookImage" fitHeight="120.0" fitWidth="100.0" layoutX="20.0" layoutY="7.0" pickOnBounds="true" />
       <Label fx:id="bookTitle" alignment="CENTER" layoutY="140.0" prefHeight="17.0" prefWidth="139.0" text="Title" />
       <Label fx:id="bookAuthor" alignment="CENTER" layoutY="168.0" prefHeight="17.0" prefWidth="139.0" text="Author" />
-   <Button fx:id="showBookButton" layoutX="3.0" layoutY="194.0" mnemonicParsing="false" onAction="#openBookView" prefHeight="24.0" prefWidth="11.0">
+   <Button layoutX="3.0" layoutY="194.0" mnemonicParsing="false" onAction="#openBookView" prefHeight="24.0" prefWidth="11.0">
       <graphic>
          <ImageView fitHeight="9.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="@../icons/expand.png" />
-            </image>
+            <Image url="@../icons/expand.png" />
          </ImageView>
       </graphic>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
    </Button>
    <Label fx:id="bookID" alignment="CENTER" contentDisplay="CENTER" layoutX="113.0" layoutY="194.0" prefHeight="24.0" prefWidth="25.0" text="1" visible="false" />
 </AnchorPane>

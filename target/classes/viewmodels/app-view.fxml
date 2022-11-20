@@ -24,7 +24,7 @@
       </padding>
       </Label>
       <AnchorPane prefHeight="599.0" prefWidth="182.0">
-            <Label fx:id="userName" layoutX="86.0" layoutY="31.0" prefHeight="17.0" prefWidth="72.0">
+            <Label fx:id="userName" layoutX="86.0" layoutY="31.0" prefHeight="17.0" prefWidth="72.0" text="User">
          <font>
             <Font size="18.0" />
          </font></Label>
@@ -44,30 +44,46 @@
                         <Image url="@../icons/search.png" />
                   </ImageView>
          </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Separator layoutY="317.0" prefHeight="3.0" prefWidth="191.0" />
-      <Button fx:id="displayAllButton" alignment="CENTER" layoutX="60.0" layoutY="326.0" mnemonicParsing="false" onAction="#displayAll" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: blue;" text="All" textFill="WHITE" />
-      <Button fx:id="displayFavouritesButton" layoutX="60.0" layoutY="376.0" mnemonicParsing="false" onAction="#displayFavourites" style="-fx-background-color: blue;" text="Favourites" textFill="WHITE" />
-      <Button fx:id="displayToReadButton" layoutX="60.0" layoutY="426.0" mnemonicParsing="false" onAction="#displayToRead" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: blue;" text="To Read" textFill="WHITE" />
-      <Button fx:id="displayReadingButton" layoutX="61.0" layoutY="476.0" mnemonicParsing="false" onAction="#displayReading" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: blue;" text="Reading" textFill="WHITE" />
-      <Button fx:id="displayReadButton" layoutX="61.0" layoutY="524.0" mnemonicParsing="false" onAction="#displayRead" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: blue;" text="Read" textFill="WHITE" />
+      <Button fx:id="displayAllButton" alignment="CENTER" layoutX="60.0" layoutY="326.0" mnemonicParsing="false" onAction="#displayAll" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: blue;" text="All" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="displayFavouritesButton" layoutX="60.0" layoutY="376.0" mnemonicParsing="false" onAction="#displayFavourites" style="-fx-background-color: blue;" text="Favourites" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="displayToReadButton" layoutX="60.0" layoutY="426.0" mnemonicParsing="false" onAction="#displayToRead" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: blue;" text="To Read" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="displayReadingButton" layoutX="61.0" layoutY="476.0" mnemonicParsing="false" onAction="#displayReading" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: blue;" text="Reading" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="displayReadButton" layoutX="61.0" layoutY="524.0" mnemonicParsing="false" onAction="#displayRead" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: blue;" text="Read" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <Separator layoutY="557.0" prefHeight="3.0" prefWidth="191.0" />
             <Button layoutX="4.0" layoutY="566.0" mnemonicParsing="false" onAction="#exit" prefHeight="25.0" prefWidth="28.0" style="-fx-background-color: red;" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="14.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../icons/exit.png" />
-               </image>
+                <Image url="@../icons/exit.png" />
             </ImageView>
          </graphic>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <ImageView fx:id="profilePicture" fitHeight="65.0" fitWidth="65.0" layoutX="13.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="profilePicture" fitHeight="65.0" fitWidth="65.0" layoutX="13.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+          <Image url="@../icons/kinesics.png" />
+      </ImageView>
       <ScrollPane layoutX="6.0" layoutY="125.0" prefHeight="180.0" prefWidth="180.0">
-         <content>
-            <FlowPane fx:id="bookResultsPane" prefHeight="81.0" prefWidth="165.0" />
-         </content>
+          <FlowPane fx:id="bookResultsPane" prefHeight="81.0" prefWidth="165.0" />
       </ScrollPane>
       </AnchorPane>
       <ScrollPane layoutX="192.0" layoutY="88.0" prefHeight="501.0" prefWidth="580.0">

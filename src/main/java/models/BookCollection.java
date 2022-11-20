@@ -24,17 +24,4 @@ public class BookCollection {
     public void setMyCollection(ArrayList<Book> myCollection) {
         this.myCollection = myCollection;
     }
-
-    // adding a book to the book collection
-    public void addBook(Book book) {
-        this.myCollection.add(book);
-    }
-
-    // removing a book from the book collection
-    public void removeBook(Book book) {
-        this.myCollection.remove(book);
-    }
-
-    // more methods (sorting and filtering) ...
-
 }

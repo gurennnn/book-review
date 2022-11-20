@@ -6,7 +6,7 @@ public class Book {
     public enum Status {
         TO_READ,
         READING,
-        READ;
+        READ
     }
 
     // book's general info

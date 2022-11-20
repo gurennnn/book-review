@@ -124,7 +124,7 @@ public class ProfileView implements Initializable {
                 // saving the temporary image's path for later update
                 saveImagePath(path);
             } catch (FileNotFoundException e) {
-                System.out.println(e.getStackTrace());
+                System.out.println("image not found");
             }
         }
     }

@@ -15,13 +15,15 @@ import viewmodels.AppView;
 
 public class DBInteraction {
 
+    static String dbPath = "C:\\Users\\ASUS\\IdeaProjects\\book-review\\src\\main\\resources\\data\\BookReviewDB.db";
+
     // deleting a book by id
     public static void deleteBookById(int bookId) {
         String query1 = "DELETE FROM collection " +
                 "WHERE id = " + bookId + ";";
         try(
-                Connection con = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\ASUS\\IdeaProjects\\book-review\\src\\main\\resources\\data\\BookReviewDB.db");
-                Statement statement = con.createStatement();
+                Connection con = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
+                Statement statement = con.createStatement()
                 ) {
             statement.executeUpdate(query1);
         } catch (SQLException e) {
@@ -38,8 +40,8 @@ public class DBInteraction {
                 "review = " + "'" + review + "' " +
                 "WHERE id = " + bookId + ";";
         try (
-                Connection con = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\ASUS\\IdeaProjects\\book-review\\src\\main\\resources\\data\\BookReviewDB.db");
-                Statement statement = con.createStatement();
+                Connection con = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
+                Statement statement = con.createStatement()
                 ) {
             statement.executeUpdate(query);
         } catch (SQLException e) {
@@ -52,7 +54,7 @@ public class DBInteraction {
         String query = "SELECT * FROM collection\n" +
                 "WHERE id = " + bookId + ";";
         try (
-                Connection con = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\ASUS\\IdeaProjects\\book-review\\src\\main\\resources\\data\\BookReviewDB.db");
+                Connection con = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
                 Statement statement = con.createStatement();
                 ResultSet result = statement.executeQuery(query)
                 ) {
@@ -65,7 +67,7 @@ public class DBInteraction {
                 int rating = result.getInt("rating");
                 String status = result.getString("status");
                 String review = result.getString("review");
-                boolean isFavourite = result.getInt("is_favourite") == 1 ? true : false;
+                boolean isFavourite = result.getInt("is_favourite") == 1;
                 Book book = new Book(id, title, author, year, coverID);
                 book.setRating(rating);
                 book.setStatus(Book.Status.valueOf(status));
@@ -84,7 +86,7 @@ public class DBInteraction {
         String query = "SELECT * FROM collection;";
         ArrayList<Book> collection = new ArrayList<>();
         try (
-                Connection con = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\ASUS\\IdeaProjects\\book-review\\src\\main\\resources\\data\\BookReviewDB.db");
+                Connection con = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
                 Statement statement = con.createStatement();
                 ResultSet result = statement.executeQuery(query)
         ) {
@@ -97,7 +99,7 @@ public class DBInteraction {
                 int rating = result.getInt("rating");
                 String status = result.getString("status");
                 String review = result.getString("review");
-                boolean isFavourite = result.getInt("is_favourite") == 1 ? true : false;
+                boolean isFavourite = result.getInt("is_favourite") == 1;
                 Book book = new Book(id, title, author, year, coverID);
                 book.setRating(rating);
                 book.setStatus(Book.Status.valueOf(status));
@@ -117,7 +119,7 @@ public class DBInteraction {
             String query = "INSERT INTO collection (cover_id, title, author, year)" +
                     "VALUES (" + coverID + ", '" + title + "', '" + author + "', " + year + ");";
             try (
-                    Connection con = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\ASUS\\IdeaProjects\\book-review\\src\\main\\resources\\data\\BookReviewDB.db");
+                    Connection con = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
                     Statement statement = con.createStatement()
             ) {
                 statement.executeUpdate(query);

@@ -73,18 +73,10 @@ public class BookView implements Initializable {
         this.bookRatingSlider.adjustValue(book.getRating());
         Book.Status status = book.getStatus();
         switch (status) {
-            case READING -> {
-                this.bookStatus2.selectedProperty().setValue(true);
-                break;
-            }
-            case READ -> {
-                this.bookStatus3.selectedProperty().setValue(true);
-                break;
-            }
-            default -> {
-                this.bookStatus1.selectedProperty().setValue(true);
-                break;
-            }
+            case READING -> this.bookStatus2.selectedProperty().setValue(true);
+
+            case READ -> this.bookStatus3.selectedProperty().setValue(true);
+            default -> this.bookStatus1.selectedProperty().setValue(true);
         }
         this.bookReviewField.setText(book.getReview());
     }

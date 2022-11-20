@@ -8,6 +8,7 @@ module book_app {
     requires com.fasterxml.jackson.databind;
 
     opens viewmodels to javafx.fxml;
-    exports viewmodels;
+    exports models;
     exports services;
+    exports viewmodels;
 }
