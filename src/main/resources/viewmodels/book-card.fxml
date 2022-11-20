@@ -6,7 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="220.0" prefWidth="139.0" style="-fx-background-radius: 5px; -fx-border-color: black; -fx-border-radius: 5px;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewmodels.BookCard">
+<AnchorPane prefHeight="220.0" prefWidth="139.0" style="-fx-background-radius: 5px; -fx-border-color: blue; -fx-border-radius: 5px;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewmodels.BookCard">
       <ImageView fx:id="bookImage" fitHeight="120.0" fitWidth="100.0" layoutX="20.0" layoutY="7.0" pickOnBounds="true" />
       <Label fx:id="bookTitle" alignment="CENTER" layoutY="140.0" prefHeight="17.0" prefWidth="139.0" text="Title" />
       <Label fx:id="bookAuthor" alignment="CENTER" layoutY="168.0" prefHeight="17.0" prefWidth="139.0" text="Author" />
@@ -19,5 +19,5 @@
          </ImageView>
       </graphic>
    </Button>
-   <Label fx:id="bookID" alignment="CENTER" contentDisplay="CENTER" layoutX="113.0" layoutY="194.0" prefHeight="24.0" prefWidth="25.0" text="1" />
+   <Label fx:id="bookID" alignment="CENTER" contentDisplay="CENTER" layoutX="113.0" layoutY="194.0" prefHeight="24.0" prefWidth="25.0" text="1" visible="false" />
 </AnchorPane>

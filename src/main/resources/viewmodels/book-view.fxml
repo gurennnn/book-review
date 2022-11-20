@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Slider?>
@@ -10,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="bookPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="488.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewmodels.BookView">
+<AnchorPane fx:id="bookViewPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="488.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewmodels.BookView">
 
       <ImageView fx:id="bookCover" fitHeight="180.0" fitWidth="160.0" layoutX="16.0" layoutY="14.0" pickOnBounds="true" />
       <Label fx:id="bookAuthor" layoutX="203.0" layoutY="85.0" prefHeight="27.0" prefWidth="275.0" text="Author :">
@@ -37,6 +39,13 @@
       <RadioButton fx:id="bookStatus3" layoutX="409.0" layoutY="195.0" mnemonicParsing="false" text="finished" toggleGroup="$status" />
       <RadioButton fx:id="bookStatus2" layoutX="295.0" layoutY="195.0" mnemonicParsing="false" text="in progress" toggleGroup="$status" />
    <TextArea fx:id="bookReviewField" layoutX="11.0" layoutY="246.0" prefHeight="231.0" prefWidth="466.0" promptText="Review This Book ..." />
-      <Button fx:id="submitButton" layoutX="424.0" layoutY="488.0" mnemonicParsing="false" style="-fx-background-color: green;" text="Submit" textFill="WHITE" />
-   <Button fx:id="deleteBook" layoutX="11.0" layoutY="488.0" mnemonicParsing="false" style="-fx-background-color: red;" text="Delete" textFill="WHITE" />
+      <Button layoutX="424.0" layoutY="488.0" mnemonicParsing="false" onAction="#submitChanges" style="-fx-background-color: green;" text="Submit" textFill="WHITE">
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor></Button>
+   <Button layoutX="11.0" layoutY="488.0" mnemonicParsing="false" onAction="#deleteBook" style="-fx-background-color: red;" text="Delete" textFill="WHITE">
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor></Button>
+   <CheckBox fx:id="bookIsFavourite" layoutX="441.0" layoutY="12.0" mnemonicParsing="false" text="fav" />
 </AnchorPane>

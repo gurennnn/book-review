@@ -13,6 +13,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import models.BookCollection;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -77,21 +78,25 @@ public class AppView implements Initializable {
     // displaying username and profile picture in the home page
     public void displayProfileInfo() {
         String[] infos = getProfileDisplayInfo();
-        String userName = infos[0];
-        String imagePath = infos[1];
-        if (!userName.equals("")) {
-            this.userName.setText(userName);
-        }
-        if (!imagePath.equals("")) {
-            Image profileImage = new Image(imagePath);
-            this.profilePicture.setImage(profileImage);
-            this.profilePicture.setFitWidth(65);
-            this.profilePicture.setFitHeight(65);
+        if (infos != null) {
+            String userName = infos[0];
+            String imagePath = infos[1];
+            if (userName != null && !userName.equals("")) {
+                this.userName.setText(userName);
+            }
+            if (imagePath != null && !imagePath.equals("")) {
+                Image profileImage = new Image(imagePath);
+                this.profilePicture.setImage(profileImage);
+                this.profilePicture.setFitWidth(65);
+                this.profilePicture.setFitHeight(65);
+            }
         }
     }
 
     // getting username and profile picture from the profile.txt file
     private String[] getProfileDisplayInfo() {
+        File file = new File(ProfileView.profileFilePath);
+        if (!file.exists()) return null;
         String[] profileInfo = new String[2];
         try {
             FileInputStream input = new FileInputStream(ProfileView.profileFilePath);
@@ -134,8 +139,6 @@ public class AppView implements Initializable {
         AnchorPane bookCard;
         BookCard bookCardController;
 
-        int booksNumber = 0;
-
         for (Book book : collection.getMyCollection()) {
             // loading the book card view from the appropriate fxml file
             bookCardLoader = new FXMLLoader(getClass().getResource("book-card.fxml"));
@@ -147,11 +150,9 @@ public class AppView implements Initializable {
             bookCardController = bookCardLoader.getController();
             // populating the empty card with books
             bookCardController.setBookCard(book);
-            // increment the books counter
-            booksNumber++;
         }
         // updating the text label
-        this.viewLabel.setText("Books List - all - " + booksNumber);
+        this.viewLabel.setText("showing all");
     }
 
     // displaying favourite books
@@ -163,8 +164,6 @@ public class AppView implements Initializable {
         FXMLLoader bookCardLoader;
         AnchorPane bookCard;
         BookCard bookCardController;
-
-        int booksNumber = 0;
 
         for (Book book : collection.getMyCollection()) {
             if (book.getIsFavourite()) {
@@ -178,12 +177,10 @@ public class AppView implements Initializable {
                 bookCardController = bookCardLoader.getController();
                 // populating the empty card with books
                 bookCardController.setBookCard(book);
-                // increment the books counter
-                booksNumber++;
             }
         }
         // updating the text label
-        this.viewLabel.setText("Books List - favs - " + booksNumber);
+        this.viewLabel.setText("showing favourites");
     }
 
     // displaying to read books
@@ -195,8 +192,6 @@ public class AppView implements Initializable {
         FXMLLoader bookCardLoader;
         AnchorPane bookCard;
         BookCard bookCardController;
-
-        int booksNumber = 0;
 
         for (Book book : collection.getMyCollection()) {
             if (book.getStatus() == Book.Status.TO_READ) {
@@ -210,12 +205,10 @@ public class AppView implements Initializable {
                 bookCardController = bookCardLoader.getController();
                 // populating the empty card with books
                 bookCardController.setBookCard(book);
-                // increment the books counter
-                booksNumber++;
             }
         }
         // updating the text label
-        this.viewLabel.setText("Books List - to read - " + booksNumber);
+        this.viewLabel.setText("showing to read");
     }
 
     // displaying currently reading books
@@ -227,8 +220,6 @@ public class AppView implements Initializable {
         FXMLLoader bookCardLoader;
         AnchorPane bookCard;
         BookCard bookCardController;
-
-        int booksNumber = 0;
 
         for (Book book : collection.getMyCollection()) {
             if (book.getStatus() == Book.Status.READING) {
@@ -242,12 +233,10 @@ public class AppView implements Initializable {
                 bookCardController = bookCardLoader.getController();
                 // populating the empty card with books
                 bookCardController.setBookCard(book);
-                // increment the books counter
-                booksNumber++;
             }
         }
         // updating the text label
-        this.viewLabel.setText("Books List - reading - " + booksNumber);
+        this.viewLabel.setText("showing reading");
     }
 
     // displaying read books
@@ -259,8 +248,6 @@ public class AppView implements Initializable {
         FXMLLoader bookCardLoader;
         AnchorPane bookCard;
         BookCard bookCardController;
-
-        int booksNumber = 0;
 
         for (Book book : collection.getMyCollection()) {
             if (book.getStatus() == Book.Status.READ) {
@@ -274,12 +261,10 @@ public class AppView implements Initializable {
                 bookCardController = bookCardLoader.getController();
                 // populating the empty card with books
                 bookCardController.setBookCard(book);
-                // increment the books counter
-                booksNumber++;
             }
         }
         // updating the text label
-        this.viewLabel.setText("Books List - read - " + booksNumber);
+        this.viewLabel.setText("showing read");
     }
 
     // exit method

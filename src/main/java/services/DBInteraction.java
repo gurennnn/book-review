@@ -1,9 +1,5 @@
 package services;
 
-import models.Book;
-import models.BookCollection;
-import viewmodels.AppView;
-
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Connection;
@@ -12,7 +8,44 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 
+import models.Book;
+import models.BookCollection;
+import viewmodels.AppView;
+
+
 public class DBInteraction {
+
+    // deleting a book by id
+    public static void deleteBookById(int bookId) {
+        String query1 = "DELETE FROM collection " +
+                "WHERE id = " + bookId + ";";
+        try(
+                Connection con = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\ASUS\\IdeaProjects\\book-review\\src\\main\\resources\\data\\BookReviewDB.db");
+                Statement statement = con.createStatement();
+                ) {
+            statement.executeUpdate(query1);
+        } catch (SQLException e) {
+            System.out.println("error deleting");
+        }
+    }
+
+    // updating a book's rating, status and review by id
+    public static void updateBookById(int bookId, int isFavourite, int rating, String status, String review) {
+        String query = "UPDATE collection\n" +
+                "SET is_favourite = " + isFavourite + ", " +
+                "rating = " + rating + ", " +
+                "status = " + "'" + status + "', " +
+                "review = " + "'" + review + "' " +
+                "WHERE id = " + bookId + ";";
+        try (
+                Connection con = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\ASUS\\IdeaProjects\\book-review\\src\\main\\resources\\data\\BookReviewDB.db");
+                Statement statement = con.createStatement();
+                ) {
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            System.out.println("error updating");
+        }
+    }
 
     // getting a book from the database by id
     public static Book getBookById(int bookId) {
@@ -41,7 +74,7 @@ public class DBInteraction {
                 return book;
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("error getting book");
         }
         return null;
     }
@@ -73,7 +106,7 @@ public class DBInteraction {
                 collection.add(book);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("error getting collection");
         }
         return new BookCollection(collection);
     }
@@ -89,7 +122,7 @@ public class DBInteraction {
             ) {
                 statement.executeUpdate(query);
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                System.out.println("error adding book");
             }
         } else {
             System.out.println("Book already exists in your collection");
@@ -106,5 +139,4 @@ public class DBInteraction {
         }
         return true;
     }
-
 }
