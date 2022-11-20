@@ -28,5 +28,4 @@ public class BookSearchView {
         DBInteraction.addBook(title, author, date, coverID);
         AppView.collection = DBInteraction.getBookCollection();
     }
-
 }

@@ -11,7 +11,7 @@ public class Book {
 
     // book's general info
     private String title, author;
-    private int year, coverID;
+    private int id, year, coverID;
 
     // book's user specific info
     private boolean isFavourite;
@@ -20,7 +20,8 @@ public class Book {
     private String review;
 
     // constructor
-    public Book(String title, String author, int year, int coverID) {
+    public Book(int id, String title, String author, int year, int coverID) {
+        this.id = id;
         this.title = title;
         this.author = author;
         this.year = year;
@@ -32,6 +33,13 @@ public class Book {
     }
 
     // getters and setters
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -91,7 +99,8 @@ public class Book {
     // toString method
     @Override
     public String toString() {
-        return "title: '" + title + '\'' +
+        return "id: " + id +
+                ".\ntitle: '" + title + '\'' +
                 ".\nauthor: '" + author + '\'' +
                 ".\nyear: " + year +
                 ".\ncover_id: " + coverID +

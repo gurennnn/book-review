@@ -136,7 +136,7 @@ public class AppView implements Initializable {
 
         int booksNumber = 0;
 
-        for (Book book : this.collection.getMyCollection()) {
+        for (Book book : collection.getMyCollection()) {
             // loading the book card view from the appropriate fxml file
             bookCardLoader = new FXMLLoader(getClass().getResource("book-card.fxml"));
             // creating the card element from the fxml loader
@@ -166,7 +166,7 @@ public class AppView implements Initializable {
 
         int booksNumber = 0;
 
-        for (Book book : this.collection.getMyCollection()) {
+        for (Book book : collection.getMyCollection()) {
             if (book.getIsFavourite()) {
                 // loading the book card view from the appropriate fxml file
                 bookCardLoader = new FXMLLoader(getClass().getResource("book-card.fxml"));
@@ -198,7 +198,7 @@ public class AppView implements Initializable {
 
         int booksNumber = 0;
 
-        for (Book book : this.collection.getMyCollection()) {
+        for (Book book : collection.getMyCollection()) {
             if (book.getStatus() == Book.Status.TO_READ) {
                 // loading the book card view from the appropriate fxml file
                 bookCardLoader = new FXMLLoader(getClass().getResource("book-card.fxml"));
@@ -230,7 +230,7 @@ public class AppView implements Initializable {
 
         int booksNumber = 0;
 
-        for (Book book : this.collection.getMyCollection()) {
+        for (Book book : collection.getMyCollection()) {
             if (book.getStatus() == Book.Status.READING) {
                 // loading the book card view from the appropriate fxml file
                 bookCardLoader = new FXMLLoader(getClass().getResource("book-card.fxml"));
@@ -262,7 +262,7 @@ public class AppView implements Initializable {
 
         int booksNumber = 0;
 
-        for (Book book : this.collection.getMyCollection()) {
+        for (Book book : collection.getMyCollection()) {
             if (book.getStatus() == Book.Status.READ) {
                 // loading the book card view from the appropriate fxml file
                 bookCardLoader = new FXMLLoader(getClass().getResource("book-card.fxml"));

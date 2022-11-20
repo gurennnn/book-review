@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="scenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="761.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewmodels.AppView">
+<AnchorPane fx:id="scenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="772.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewmodels.AppView">
 
       <Label fx:id="viewLabel" contentDisplay="CENTER" layoutX="191.0" prefHeight="88.0" prefWidth="569.0" textAlignment="CENTER">
          <font>
@@ -70,8 +70,8 @@
          </content>
       </ScrollPane>
       </AnchorPane>
-      <ScrollPane layoutX="192.0" layoutY="88.0" prefHeight="501.0" prefWidth="569.0">
-            <FlowPane fx:id="bookCollectionPane" hgap="47.0" prefHeight="177.0" prefWidth="541.0" vgap="30.0">
+      <ScrollPane layoutX="192.0" layoutY="88.0" prefHeight="501.0" prefWidth="580.0">
+            <FlowPane fx:id="bookCollectionPane" hgap="47.0" prefHeight="125.0" prefWidth="552.0" vgap="30.0">
          <padding>
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </padding>
