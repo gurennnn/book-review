@@ -2,9 +2,8 @@ package viewmodels;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import models.Book;
-
-import javax.swing.text.html.ImageView;
 
 public class BookCard {
 

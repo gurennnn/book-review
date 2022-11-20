@@ -28,7 +28,7 @@ public class Searching {
         for (JsonBookFormat jsonBook : jsonResponse.docs) {
             if (counter > 10) break;
             String bookAuthor = jsonBook.author_name == null ? "unknown" : jsonBook.author_name.get(0);
-            bookSearchList.add(new BookSearch(jsonBook.title, bookAuthor, jsonBook.first_publish_date));
+            bookSearchList.add(new BookSearch(jsonBook.title, bookAuthor, jsonBook.first_publish_date, jsonBook.cover_i));
             counter++;
         }
         return bookSearchList;

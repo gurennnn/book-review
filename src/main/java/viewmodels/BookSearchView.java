@@ -9,13 +9,14 @@ public class BookSearchView {
 
     // fxml fields
     @FXML
-    private Label bookSearchTitle, bookSearchAuthor, bookSearchDate;
+    private Label bookSearchTitle, bookSearchAuthor, bookSearchDate, bookSearchCoverID;
 
     // populating the bookSearchPane
     public void setBookSearch(BookSearch bookSearch) {
         this.bookSearchTitle.setText(bookSearch.getTitle());
         this.bookSearchAuthor.setText(bookSearch.getAuthor());
         this.bookSearchDate.setText(String.valueOf(bookSearch.getDate()));
+        this.bookSearchCoverID.setText(String.valueOf(bookSearch.getCoverID()));
     }
 
     // add selected book to the book collection
@@ -23,7 +24,9 @@ public class BookSearchView {
         String title = this.bookSearchTitle.getText();
         String author = this.bookSearchAuthor.getText();
         int date = Integer.valueOf(this.bookSearchDate.getText());
-        DBInteraction.addBook(title, author, date);
+        int coverID = Integer.valueOf(this.bookSearchCoverID.getText());
+        DBInteraction.addBook(title, author, date, coverID);
+        AppView.collection = DBInteraction.getBookCollection();
     }
 
 }

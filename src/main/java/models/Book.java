@@ -11,23 +11,24 @@ public class Book {
 
     // book's general info
     private String title, author;
-    private int date;
+    private int year, coverID;
 
     // book's user specific info
     private boolean isFavourite;
     private Status status;
     private int rating;
-    private String revue;
+    private String review;
 
     // constructor
-    public Book(String title, String author, int date) {
+    public Book(String title, String author, int year, int coverID) {
         this.title = title;
         this.author = author;
-        this.date = date;
+        this.year = year;
+        this.coverID = coverID;
         this.isFavourite = false;
         this.status = Status.TO_READ;
         this.rating = 0;
-        this.revue = "";
+        this.review = "";
     }
 
     // getters and setters
@@ -45,11 +46,11 @@ public class Book {
         this.author = author;
     }
 
-    public int getDate() {
-        return date;
+    public int getYear() {
+        return year;
     }
-    public void setDate(int date) {
-        this.date = date;
+    public void setYear(int year) {
+        this.year = year;
     }
 
     public boolean getIsFavourite() {
@@ -73,23 +74,31 @@ public class Book {
         this.rating = rating;
     }
 
-    public String getRevue() {
-        return revue;
+    public String getReview() {
+        return review;
     }
-    public void setRevue(String revue) {
-        this.revue = revue;
+    public void setReview(String review) {
+        this.review = review;
+    }
+
+    public int getCoverID() {
+        return coverID;
+    }
+    public void setCoverID(int coverID) {
+        this.coverID = coverID;
     }
 
     // toString method
-
     @Override
     public String toString() {
         return "title: '" + title + '\'' +
                 ".\nauthor: '" + author + '\'' +
-                ".\ndate: " + date +
+                ".\nyear: " + year +
+                ".\ncover_id: " + coverID +
                 ".\nstatus: " + status +
                 ".\nrating: " + rating +
-                ".\nrevue: '" + revue + '\'' +
+                ".\nreview: '" + review + '\'' +
                 ".";
     }
+
 }

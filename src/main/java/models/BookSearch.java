@@ -6,13 +6,14 @@ public class BookSearch {
 
     // fields
     private String title, author;
-    private int date;
+    private int date, coverID;
 
     // constructor
-    public BookSearch(String title, String author, int date) {
+    public BookSearch(String title, String author, int date, int coverID) {
         this.title = title;
         this.author = author;
         this.date = date;
+        this.coverID = coverID;
     }
 
     // getters and setters
@@ -35,6 +36,13 @@ public class BookSearch {
     }
     public void setDate(int date) {
         this.date = date;
+    }
+
+    public int getCoverID() {
+        return coverID;
+    }
+    public void setCoverID(int coverID) {
+        this.coverID = coverID;
     }
 
 }

@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
 import models.Book;
 import models.BookSearch;
 import models.Profile;
+import services.DBInteraction;
 import services.Searching;
 
 public class AppView implements Initializable {
@@ -42,7 +43,7 @@ public class AppView implements Initializable {
     private TextField bookSearchBar;
 
     // mocked data book collection
-    private BookCollection collection;
+    public static BookCollection collection;
 
     // displaying the search results in the list view element
     public void displayResults() throws IOException {
@@ -297,8 +298,8 @@ public class AppView implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.collection = new BookCollection();
         displayProfileInfo();
+        AppView.collection = DBInteraction.getBookCollection();
         try {
             displayAll();
         } catch (IOException e) {
