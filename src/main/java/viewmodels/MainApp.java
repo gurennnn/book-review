@@ -21,8 +21,6 @@ public class MainApp extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Book Review");
-        Image icon = new Image("C:\\Users\\ASUS\\Pictures\\Camera Roll\\book-review-icon.png");
-        stage.getIcons().add(icon);
         stage.setResizable(false);
         stage.show();
         // linking the exit method with the closing 'x' button

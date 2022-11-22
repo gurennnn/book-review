@@ -15,7 +15,7 @@ import viewmodels.AppView;
 
 public class DBInteraction {
 
-    static String dbPath = "C:\\Users\\ASUS\\IdeaProjects\\book-review\\src\\main\\resources\\data\\BookReviewDB.db";
+    static String dbPath = "C:\\Users\\moham\\IdeaProjects\\book-review\\src\\main\\resources\\data\\BookReviewDB.db";
 
     // deleting a book by id
     public static void deleteBookById(int bookId) {

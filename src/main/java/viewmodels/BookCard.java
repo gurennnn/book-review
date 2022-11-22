@@ -43,8 +43,6 @@ public class BookCard {
         Stage bookStage = new Stage();
         // some stage styling
         bookStage.setResizable(false);
-        Image icon = new Image("C:\\Users\\ASUS\\Pictures\\Camera Roll\\book-review-icon.png");
-        bookStage.getIcons().add(icon);
         bookStage.setTitle("Book View: " + bookTitle.getText());
         // adding the view to a scene and linking it to the profile view
         bookStage.setScene(new Scene(bookView));
