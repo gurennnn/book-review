@@ -35,11 +35,7 @@ public class AppView implements Initializable {
     @FXML
     private FlowPane bookCollectionPane, bookResultsPane;
     @FXML
-    private ImageView profilePicture;
-    @FXML
     private Label viewLabel;
-    @FXML
-    private Label userName;
     @FXML
     private TextField bookSearchBar;
 
@@ -75,41 +71,6 @@ public class AppView implements Initializable {
         }
     }
 
-    // displaying username and profile picture in the home page
-    public void displayProfileInfo() {
-        String[] infos = getProfileDisplayInfo();
-        if (infos != null) {
-            String userName = infos[0];
-            String imagePath = infos[1];
-            if (userName != null && !userName.equals("")) {
-                this.userName.setText(userName);
-            }
-            if (imagePath != null && !imagePath.equals("")) {
-                Image profileImage = new Image(imagePath);
-                this.profilePicture.setImage(profileImage);
-                this.profilePicture.setFitWidth(65);
-                this.profilePicture.setFitHeight(65);
-            }
-        }
-    }
-
-    // getting username and profile picture from the profile.txt file
-    private String[] getProfileDisplayInfo() {
-        File file = new File(ProfileView.profileFilePath);
-        if (!file.exists()) return null;
-        String[] profileInfo = new String[2];
-        try {
-            FileInputStream input = new FileInputStream(ProfileView.profileFilePath);
-            ObjectInputStream profileInput = new ObjectInputStream(input);
-            Profile userProfile = (Profile) profileInput.readObject();
-            profileInfo[0] = userProfile.getUserName();
-            profileInfo[1] = userProfile.getImagePath();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return profileInfo;
-    }
-
     // showing the profile view
     public void showProfile() throws IOException {
         // loading the profile view's fxml file
@@ -120,8 +81,6 @@ public class AppView implements Initializable {
         Stage profileStage = new Stage();
         // some stage styling
         profileStage.setResizable(false);
-        Image icon = new Image("C:\\Users\\ASUS\\Pictures\\Camera Roll\\book-review-icon.png");
-        profileStage.getIcons().add(icon);
         profileStage.setTitle("Welcome to your Profile :)");
         // adding the view to a scene and linking it to the profile view
         profileStage.setScene(new Scene(profileView));
@@ -283,7 +242,6 @@ public class AppView implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        displayProfileInfo();
         AppView.collection = DBInteraction.getBookCollection();
         try {
             displayAll();

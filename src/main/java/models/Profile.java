@@ -8,30 +8,20 @@ public class Profile implements Serializable {
     public static final long serialVersionUID = 1L;
 
     // instance fields
-    private String userName, firstName, lastName, country, email, gsm, imagePath;
+    private String firstName, lastName, country, email, gsm;
     private int age;
 
     // constructor
-    public Profile(String userName, String firstName, String lastName, String country, String email, String gsm, int age, String imagePath) {
-        this.userName = userName;
+    public Profile(String firstName, String lastName, String country, String email, String gsm, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.country = country;
         this.email = email;
         this.gsm = gsm;
         this.age = age;
-        this.imagePath = imagePath;
     }
 
     // setters and getters
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -78,13 +68,5 @@ public class Profile implements Serializable {
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
     }
 }
