@@ -9,24 +9,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="profilePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="357.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewmodels.ProfileView">
-      <ImageView fx:id="profilePicture" fitHeight="130.0" fitWidth="130.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+<AnchorPane fx:id="profilePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="357.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewmodels.ProfileView">
+      <ImageView fx:id="profilePicture" fitHeight="130.0" fitWidth="130.0" layoutX="114.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <Image url="@../icons/kinesics.png" />
       </ImageView>
-   <Label fx:id="changeProfilePicture" layoutX="14.0" layoutY="144.0" onMouseClicked="#changePFP" text="change picture">
-      <font>
-         <Font size="10.0" />
-      </font>
-      <cursor>
-         <Cursor fx:constant="HAND" />
-      </cursor>
-   </Label>
       <Label layoutX="131.0" layoutY="176.0" prefHeight="27.0" prefWidth="95.0" text="Your Profile">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="userNameField" layoutX="154.0" layoutY="67.0" prefHeight="25.0" prefWidth="189.0" promptText="Username" />
       <TextField fx:id="firstNameField" layoutX="84.0" layoutY="224.0" prefHeight="25.0" prefWidth="189.0" promptText="First name" />
       <TextField fx:id="lastNameField" layoutX="84.0" layoutY="268.0" prefHeight="25.0" prefWidth="189.0" promptText="Last name" />
       <TextField fx:id="ageField" layoutX="84.0" layoutY="312.0" prefHeight="25.0" prefWidth="189.0" promptText="Age e.g 17" />
