@@ -1,9 +1,5 @@
 # Book Review Application
 
-*Date :* 11 / 10 / 2022
-
-*Author :* Mohamed "Guren" Nijadi
-
 ## ***Description :***
 
 Java GUI application for setting up your own virtual library, managing your books list and review books as you finish reading them.
